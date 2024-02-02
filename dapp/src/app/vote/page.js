@@ -58,12 +58,12 @@ export default function Vote() {
     setMessage("Connecting to wallet...wait...");
     addVote(1)
       .then(() => {
-        //setShowVotes(1);
+        setShowVotes(1);
         setMessage("Partial results subject to change minute by minute.");
       })
       .catch(err => {
         console.error(err);
-        //setMessage(err.message);
+        setMessage(err.message);
       })
   }
 
