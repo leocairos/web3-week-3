@@ -1,11 +1,24 @@
 "use client"
 
+import { useState } from "react";
 import Head from "next/head";
+import { doLogin } from "@/services/Web3Service";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
+  const { push } = useRouter();
+
+  const [message, setMessage] = useState("");
+
   function btnLoginClick() {
-    console.log("click")
+    setMessage("Connecting to wallet...wait...");
+    doLogin()
+      .then(account => push("/vote"))
+      .catch(err => {
+        console.error(err);
+        setMessage(err.message);
+      })
   }
 
   return (
@@ -22,14 +35,15 @@ export default function Home() {
           </div>
           <div className="col-lg-6">
             <h1 className="display-5 fw-bold text-body-emphasis lh-1 mb-3">Webbb3</h1>
-            <p className="lead">Votação on-chain do BBB.</p>
-            <p className="lead mb-3">Autentique-se com sua carteira e deixe o seu voto para o próximo paredão.</p>
+            <p className="lead">BBB on-chain voting.</p>
+            <p className="lead mb-3">Authenticate with your wallet and leave your vote for the next wall.</p>
             <div className="d-grid gap-2 d-md-flex justify-content-md-start">
               <button type="button" onClick={btnLoginClick} className="btn btn-primary btn-lg px-4 me-md-2">
                 <img src="/metamask.svg" width="64" className="me-3" />
-                Conectar com a MetaMask
+                Connect with MetaMask
               </button>
             </div>
+            <p className="message">{message}</p>
           </div>
         </div>
         <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">

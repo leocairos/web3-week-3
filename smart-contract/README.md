@@ -1,6 +1,8 @@
 # smart-contract
 
-Our Webbb3 web3 smart contract. Project from Web3 Week: https://www.luiztools.com.br/w3w
+My Webbb3 web3 smart contract. 
+
+Deployed on https://testnet.bscscan.com/tx/0xf55fb23db4793a935df85320554e4caa38cf8ce137649a2c218fc0bba1528e97
 
 ## How to Run
 
